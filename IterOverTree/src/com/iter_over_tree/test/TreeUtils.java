@@ -28,7 +28,6 @@ public class TreeUtils {
 		}
 	}
 
-	
 	public static <T> void parcoursProfondeur(Node<T> rootNode, NodeCallable<T> callable) {
 		
 		Stack<Integer> indexStack = new Stack<Integer>();
