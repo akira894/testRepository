@@ -34,7 +34,11 @@ public class Launcher {
 		// TreeUtils.parcoursLargeur(rootNode);
 		
 		//-- TENTATIVE PARCOURS PROFONDEUR --//
-		TreeUtils.parcoursProfondeur(rootNode);
+		TreeUtils.parcoursProfondeur(
+				rootNode, 
+				(node, level) -> System.out.println("\t".repeat(level) + node.toString())
+		);
+
 	}
 	
 

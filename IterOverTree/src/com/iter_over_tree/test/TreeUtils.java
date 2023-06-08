@@ -27,22 +27,20 @@ public class TreeUtils {
 			System.out.println("\t".repeat(currentLevel) + currentNode);
 		}
 	}
+
 	
-	public static void parcoursProfondeur(Node<String> rootNode) {
-		long startTime = System.currentTimeMillis();
+	public static <T> void parcoursProfondeur(Node<T> rootNode, NodeCallable<T> callable) {
 		
 		Stack<Integer> indexStack = new Stack<Integer>();
-		Node<String> currentNode = rootNode;
-		System.out.println(rootNode.toString());
+		Node<T> currentNode = rootNode;
+		callable.process(currentNode, 0);
 		indexStack.push(0);
 		
 		while(true) {
 			int collsize = currentNode.children.size();
 			int i = indexStack.pop();
 			for (; i < collsize; i++) {
-				
-				System.out.println("\t".repeat(indexStack.size() + 1) + currentNode.children.get(i));
-				
+				callable.process(currentNode.children.get(i), indexStack.size()+1);
 				if(currentNode.children.get(i).children.size() > 0) {
 					indexStack.push(i+1);
 					indexStack.push(0);
@@ -54,13 +52,12 @@ public class TreeUtils {
 					currentNode = currentNode.parent;
 			}
 			
-			if(indexStack.empty()) {
-				System.out.println("FINISH");
+			if(indexStack.empty()) 
 				break;
-			}
+			
 		}
 		
-		System.out.println("Total Time : " + (System.currentTimeMillis() - startTime) + " millis");
+
 	}
 
 }
