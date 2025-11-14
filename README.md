@@ -1,1 +1,3 @@
-# testRepository
+# JavaLabRepository
+
+Java playground
